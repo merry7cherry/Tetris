@@ -1,0 +1,375 @@
+/* Reset some basic elements */
+body,
+h1,
+nav,
+main,
+section {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #ADD8E6;
+}
+
+.game-mode {
+  background: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+/* Style for the header */
+header {
+  background-color: #333;
+  color: white;
+  padding: 10px 40px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 10%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+header .title {
+  position: relative;
+  width: 70%;
+}
+
+/* Style for the main title */
+header .title h1 {
+  float: left;
+  font-size: 24px;
+  display: block;
+  z-index: 1;
+  cursor: default;
+}
+
+header .title .explain {
+  position: absolute;
+  left: -80%;
+  opacity: 0;
+  top: 0;
+  height: 100%;
+  line-height: 15%;
+  cursor: default;
+  /* 用于垂直居中文本 */
+  text-align: center;
+  transition: left 0.5s ease, opacity 0.5s cubic-bezier(0, 0, 0, 1);
+  /* 平滑过渡效果 */
+}
+
+header .title:hover .explain {
+  opacity: 1;
+  left: 20%;
+  transition: left 0.5s ease, opacity 0.5s cubic-bezier(1, 0, 1, 1);
+}
+
+/* Style for the navigation menu */
+nav a {
+  color: white;
+  text-decoration: none;
+  margin-left: 40px;
+  font-size: 20px;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+/* Style for the sidebar */
+aside {
+  position: fixed;
+  top: 12%;
+  /* Adjust the value to the height of your header */
+  left: 0;
+  width: 15%;
+}
+
+aside div {
+  background: #ADD8E6;
+  width: 100%;
+  margin-bottom: 3%;
+  transition: border-radius 0.3s ease;
+  /* 平滑过渡效果 */
+}
+
+aside a img {
+  margin-right: 5px;
+  /* 在图片和文本之间添加一些空间 */
+  vertical-align: middle;
+  width: 20%;
+  height: 20%;
+  display: inline;
+}
+
+aside a p {
+  margin-left: 5px;
+  /* 在图片和文本之间添加一些空间 */
+  vertical-align: middle;
+  display: inline;
+  font-size: 16px;
+
+}
+
+aside a {
+  display: block;
+  text-decoration: none;
+  color: black;
+  /* 或者您喜欢的任何颜色 */
+  padding-left: 18%;
+}
+
+aside div:hover {
+  border-radius: 20px;
+  border: 1px solid red;
+  background-color: white;
+
+}
+
+aside div:hover p {
+  color: red;
+  font-size: 18px;
+
+}
+
+/* Main content styles */
+main {
+  padding-top: 5%;
+  /* Adjust the value to the height of your header */
+  padding-left: 16%;
+  /* Adjust the value to match your sidebar's width if needed */
+}
+
+section {
+  padding: 20px;
+  margin: 10px 0;
+  background: #eee;
+  border: 1px solid #ddd;
+  display: none;
+  width: 90%;
+  height: 100%;
+}
+
+#initial {
+  display: block;
+}
+
+#initial #slogan {
+  font-size: 16px;
+  text-decoration: underline;
+}
+
+.page-title {
+  font-size: 18px;
+  margin-bottom: 2%;
+}
+
+#gameSettingsForm {
+  background-color: #f4f4f4;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#gameSettingsForm label {
+  display: block;
+  margin-bottom: 1%;
+}
+
+#gameSettingsForm select {
+  width: 20%;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  margin-bottom: 2%;
+  font-size: 16px;
+}
+
+#gameSettingsForm button {
+  padding: 10px 15px;
+  margin-right: 10px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
+  border-radius: 5px;
+}
+
+/* 蓝色主题按钮 */
+#startGameButton {
+  background-color: #007bff;
+  color: white;
+}
+
+#startGameButton:hover {
+  background-color: #006de1;
+}
+
+#startGameButton:active {
+  background-color: #005ebd;
+  box-shadow: 0 2px #666;
+  transform: translateY(2px);
+}
+
+/* 白色主题按钮 */
+#resetButton {
+  background-color: white;
+  color: black;
+  border: 1px solid #ddd;
+}
+
+#resetButton:hover {
+  background-color: #F08080;
+}
+
+#resetButton:active {
+  background-color: #f6402b;
+  box-shadow: 0 2px #666;
+  transform: translateY(2px);
+}
+
+#gameSettingsForm #btn {
+  margin-top: 1%;
+}
+
+#colorDisplay {
+  width: 180px;
+  height: 20px;
+  position: absolute;
+  display: flex;
+  left: 35%;
+  top: 43%;
+  flex-wrap: wrap;
+}
+
+.colorBox {
+  width: 20px;
+  height: 20px;
+  margin: 1px;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#leaderboard {
+  margin-top: 20px;
+}
+
+.leaderboard-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.leaderboard-table th,
+.leaderboard-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.leaderboard-table th {
+  background-color: #f2f2f2;
+}
+
+.difficulty-hard .leaderboard-table th {
+  background-color: #ff4d4d;
+  /* 红色 */
+}
+
+.difficulty-medium .leaderboard-table th {
+  background-color: #4d79ff;
+  /* 蓝色 */
+}
+
+.difficulty-easy .leaderboard-table th {
+  background-color: #4dff4d;
+  /* 绿色 */
+}
+
+#difficultySelector {
+  width: 20%;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#game-screen {
+  background: #333;
+  /* display: flex; */
+  display: none;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+#exit {
+  background-color: white;
+  color: black;
+  border: 1px solid #ddd;
+  padding: 5px 10px;
+  margin-top: 10px;
+  margin-right: 10px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
+  border-radius: 5px;
+}
+
+#exit:hover {
+  background-color: #F08080;
+}
+
+#exit:active {
+  background-color: #f6402b;
+  box-shadow: 0 2px #666;
+  transform: translateY(2px);
+}
+
+#game-container {
+  display: flex;
+  /* display: none; */
+  flex-direction: column;
+  align-items: center;
+}
+
+#game-container div {
+  margin-top: 10px;
+  font-size: 18px;
+  color: white;
+}
+
+#tetris {
+  border: 2px solid white;
+}
+
+#score {
+  color: white;
+  margin-top: 10px;
+}

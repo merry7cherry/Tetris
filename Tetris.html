@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tetris Game</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <div id="all">
+    <header>
+      <div class="title">
+        <h1 id="home">Tetris Game</h1>
+        <div class="explain">
+          <p>A timeless puzzle where falling blocks create a symphony of strategic alignment.</p>
+        </div>
+      </div>
+      <nav>
+        <a id="About" href="https://tetris.com">About</a>
+        <a id="Tips" href="#tips">Tips</a>
+        <a id="Author" href="#author">Author</a>
+        <a id="Relative" href="#relative">Relative</a>
+      </nav>
+    </header>
+
+    <aside>
+      <div id="StartGame"><a href="#start-game"><img src="./StartGame.png">
+          <p>Start Game</p>
+        </a></div>
+      <div id="RankingList"><a href="#ranking-list"><img src="./RankingList.png">
+          <p>Ranking List</p>
+        </a></div>
+      <div id="Illustration"><a href="#illustration"><img src="./Illustration.png">
+          <p>Illustration</p>
+        </a></div>
+    </aside>
+
+    <main>
+
+      <section id="initial">
+        <div class="page-title">Welcome!</div>
+        <div id="slogan">
+          <p>Here is the Tetris Game, a classic and intelligence-beneficial game.</p>
+        </div>
+        <div id="instruction">
+          <ul>
+            <li>
+              <p>Enjoy the game by clicking <em>Start Game</em></p>
+            </li>
+            <li>
+              <p>Check the Ranking List by clicking <em>Ranking List</em></p>
+            </li>
+            <li>
+              <p>Get game-instruction by clicking <em>Illustration</em></p>
+            </li>
+          </ul>
+        </div>
+        <div id="luck">
+          <p>Have a great time!</p>
+        </div>
+      </section>
+
+      <section id="game">
+        <div class="page-title">Configure your game</div>
+
+        <form id="gameSettingsForm">
+          <label for="difficulty">Difficulty:</label>
+          <select id="difficulty" name="difficulty">
+            <option value="easy">easy</option>
+            <option value="medium" selected>medium</option>
+            <option value="hard">hard</option>
+          </select>
+
+          <div id="colorDisplay"></div>
+
+          <label for="colorSet">Color Set:</label>
+          <select id="colorSet" name="colorSet">
+            <option value="set1" selected>set1</option>
+            <option value="set2">set2</option>
+            <option value="set3">set3</option>
+          </select>
+
+          <div id="btn">
+            <button type="submit" id="startGameButton">Start Game</button>
+            <button type="button" id="resetButton">Reset Configuration</button>
+          </div>
+
+        </form>
+
+        <!-- 帮我设计一个表单，要求提供HTML、CSS、JS代码，表单要求如下： -->
+      </section>
+
+      <section id="list">
+        <div class="page-title">Ranking List</div>
+        <select id="difficultySelector" onchange="updateLeaderboard()">
+          <option value="hard">Hard</option>
+          <option value="medium">Medium</option>
+          <option value="easy">Easy</option>
+        </select>
+
+        <div id="leaderboard"></div>
+      </section>
+      <section id="ins">
+        <div class="page-title">Illustration</div>
+      </section>
+      <section id="tips">
+        <div class="page-title">Tips</div>
+      </section>
+      <section id="author">
+        <div class="page-title">Author</div>
+      </section>
+      <section id="relative">
+        <div class="page-title">Relative</div>
+      </section>
+    </main>
+
+  </div>
+  <div id="game-screen">
+    <div id="game-container">
+      <canvas id="tetris" width="240" height="400"></canvas>
+      <!-- <canvas id="tetris" width="360" height="600"></canvas> -->
+      <div>
+        Score: <span id="score">0</span>
+      </div>
+      <button type="button" id="exit">Exit</button>
+    </div>
+  </div>
+  <script src="game.js"></script>
+</body>
+
+</html>
