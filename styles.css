@@ -281,13 +281,28 @@ section {
   /* 红色 */
 }
 
+.difficulty-hard .leaderboard-table td {
+  background-color: #ffc4c4;
+  /* 红色 */
+}
+
 .difficulty-medium .leaderboard-table th {
   background-color: #4d79ff;
   /* 蓝色 */
 }
 
+.difficulty-medium .leaderboard-table td {
+  background-color: #bcccfe;
+  /* 蓝色 */
+}
+
 .difficulty-easy .leaderboard-table th {
   background-color: #4dff4d;
+  /* 绿色 */
+}
+
+.difficulty-easy .leaderboard-table td {
+  background-color: #caffca;
   /* 绿色 */
 }
 
@@ -299,6 +314,78 @@ section {
   font-size: 16px;
 }
 
+.tetris-instructions {
+  font-family: 'Arial', sans-serif;
+  color: #333;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 20px;
+  margin: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.tetris-instructions h1 {
+  color: #3877FF;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.tetris-instructions h2 {
+  color: #FF8E0D;
+  font-size: 20px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.tetris-instructions ul {
+  margin: 0;
+  padding: 0 0 0 20px;
+}
+
+.tetris-instructions li {
+  margin-bottom: 10px;
+}
+
+.tetris-instructions strong {
+  color: #F538FF;
+}
+
+
+/* CSS */
+#myModal {
+  display: none;
+  position: fixed;
+  z-index: 2;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+#myModal .modal-content {
+  background-color: #fefefe;
+  margin: 20% auto;
+  padding: 10px 20px;
+  border: 1px solid #888;
+  width: 20%;
+}
+
+#myModal .close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
 
 
 

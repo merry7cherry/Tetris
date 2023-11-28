@@ -84,7 +84,7 @@
           </select>
 
           <div id="btn">
-            <button type="submit" id="startGameButton">Start Game</button>
+            <button type="button" id="startGameButton">Start Game</button>
             <button type="button" id="resetButton">Reset Configuration</button>
           </div>
 
@@ -105,6 +105,28 @@
       </section>
       <section id="ins">
         <div class="page-title">Illustration</div>
+        <div class="tetris-instructions">
+          <h1>俄罗斯方块游戏说明</h1>
+          <p><strong>游戏目标：</strong>在俄罗斯方块游戏中，您的目标是通过操控不同形状的方块，使它们在游戏区域内形成完整的横行，这样就可以消除这些行并获得分数。游戏持续进行，直到方块堆积到屏幕顶部。</p>
+          <p><strong>游戏结束条件：</strong>如果方块堆积到屏幕顶部，游戏结束。</p>
+          <p><strong>难度选择：</strong>在游戏开始前，您可以选择不同的难度级别（如简单、中等、困难）。难度主要影响方块下落的速度。</p>
+          <p><strong>自定义设置：</strong>您可以自定义方块的样式，以增加游戏的趣味性。</p>
+
+          <h2>基本玩法：</h2>
+          <ul>
+            <li><strong>控制方块：</strong>游戏开始时，方块会从屏幕顶部开始下落。使用键盘上的箭头键来控制方块的移动：
+              <ul>
+                <li>左箭头：向左移动方块。</li>
+                <li>右箭头：向右移动方块。</li>
+                <li>下箭头：加速方块下落。</li>
+              </ul>
+            </li>
+            <li><strong>旋转方块：</strong>按“Q”或“W”键来旋转方块，调整方块的朝向以适应堆叠。</li>
+            <li><strong>消除行：</strong>当一个横行被完全填满时，该行会被消除，并且您会获得分数。上面的方块随后会下移填补空缺。</li>
+            <li><strong>积分系统：</strong>每消除一行，您都会获得分数。连续消除多行可以获得更高的分数。</li>
+          </ul>
+        </div>
+
       </section>
       <section id="tips">
         <div class="page-title">Tips</div>
@@ -126,6 +148,13 @@
         Score: <span id="score">0</span>
       </div>
       <button type="button" id="exit">Exit</button>
+    </div>
+  </div>
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <p id="score-text">这是一个自定义的弹出框！</p>
+      <p id="rank-text">这是一个自定义的弹出框！</p>
     </div>
   </div>
   <script src="game.js"></script>

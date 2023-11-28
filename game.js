@@ -138,7 +138,10 @@ function playerReset() {//刷新一个方块
     player.pos.x = (arena[0].length / 2 | 0) -
         (player.matrix[0].length / 2 | 0);
     if (collide(arena, player)) {//碰撞即游戏结束
+        console.log('exit');
         arena.forEach(row => row.fill(0));
+        finalScore = player.score;
+        stopGame();
         player.score = 0;
         updateScore();
     }
@@ -247,10 +250,16 @@ const player = {//方块对象
     score: 0,
 };
 
+let isGameRunning = false;
+
 function update(time = 0) {//定义更新函数，执行游戏逻辑的更新，requestAnimationFrame来安排下一次的update调用
     /*time：时间戳，时间戳time是自动由浏览器提供的，并且每次浏览器准备进行重绘时，
     即在下一帧动画渲染前，requestAnimationFrame回调就会被调用，并接收一个新的时间戳。
     */
+    if (!isGameRunning) {
+        return; // 停止游戏更新
+    }
+
     const deltaTime = time - lastTime;//计算两次绘制的时间差
     lastTime = time;//记录时间戳
 
@@ -261,12 +270,21 @@ function update(time = 0) {//定义更新函数，执行游戏逻辑的更新，
     // console.log(lastTime);
     // console.log(dropCounter);
 
+    // requestId = requestAnimationFrame(update); // 用变量存储请求ID
+
     if (dropCounter > dropInterval) {
         playerDrop();
     }
 
     draw();
+
+    if (!isGameRunning) {
+        return; // 停止游戏更新
+    }
+
     requestId = requestAnimationFrame(update); // 用变量存储请求ID
+
+    // requestId = requestAnimationFrame(update); // 用变量存储请求ID
     /*
     requestAnimationFrame(update) 是一种告诉浏览器你希望执行动画的方法，
     并且请求浏览器在下次重绘之前调用指定的函数来更新动画。这个方法是一个递归调用，
@@ -287,6 +305,8 @@ let lastTime = 0;
 let requestId; // 用于取消请求动画帧的变量
 
 function startGame() {
+    isGameRunning = true;
+
     document.getElementById("game-container").style.display = 'flex';
 
     // 重置游戏状态
@@ -304,7 +324,12 @@ function stopGame() {
     if (requestId) {
         cancelAnimationFrame(requestId); // 取消请求动画帧
         requestId = undefined; // 清除requestId
+        showModal();
+        updateLeaderboardData(difficulty,["Player",finalScore]);
+        updateLeaderboard();
     }
+    isGameRunning = false;
+    draw(); // 绘制最后一帧
 }
 
 function showHome() {
@@ -441,6 +466,8 @@ updateColorDisplay(showColor['set1']);
 
 document.getElementById('resetButton').addEventListener('click', reset);
 
+let difficulty = "medium";
+
 document.getElementById('startGameButton').addEventListener('click', function () {
     let selectedDiff = document.getElementById('difficulty').value;
     let selectedColorSet = document.getElementById('colorSet').value;
@@ -448,6 +475,8 @@ document.getElementById('startGameButton').addEventListener('click', function ()
 
     // console.log(selectedDiff);
     // console.log(selectedColorSet);
+
+    difficulty = selectedDiff;
 
     switch (selectedDiff) {
         case "hard":
@@ -477,13 +506,43 @@ document.getElementById('startGameButton').addEventListener('click', function ()
 });
 
 document.getElementById('exit').addEventListener('click', function () {
+    finalScore = player.score;
+
     stopGame();
 
-    document.getElementById('game-screen').style.display = 'none';
+    // document.getElementById('game-screen').style.display = 'none';
 
-    document.getElementById('all').style.display = 'block';
+    // document.getElementById('all').style.display = 'block';
 
 });
+
+// 弹出提示框
+function showModal() {
+    var modal = document.getElementById("myModal");
+    var span = document.getElementsByClassName("close")[0];
+
+    modal.style.display = "block";
+
+    document.getElementById('score-text').innerText = "Your final Score is: "+finalScore+" !";
+    document.getElementById('rank-text').innerText = "Your Score ranks in the top " +getPercentile(difficulty,finalScore)+"% of "+difficulty+" levels"+" !";
+
+    span.onclick = function() {
+        modal.style.display = "none";
+        document.getElementById('game-screen').style.display = 'none';
+        document.getElementById('all').style.display = 'block';
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+            document.getElementById('game-screen').style.display = 'none';
+            document.getElementById('all').style.display = 'block';
+        }
+    }
+}
+
+let finalScore = 0;
+
 
 
 
@@ -493,8 +552,13 @@ const leaderboardData = {
     easy: []
 };
 
-function updateLeaderboardData(difficulty, data) {
+function initialLeaderboardData(difficulty, data) {
     leaderboardData[difficulty] = data;
+    sortLeaderboard(difficulty);
+}
+
+function updateLeaderboardData(difficulty, data) {
+    leaderboardData[difficulty].push(data);
     sortLeaderboard(difficulty);
 }
 
@@ -530,9 +594,10 @@ function getPercentile(difficulty, score) {
 }
 
 // 示例数据更新
-updateLeaderboardData('hard', [['User1', 120], ['User2', 140], ['User3', 20]]);
-updateLeaderboardData('medium', [['User4', 110], ['User5', 130], ['User6', 30]]);
-updateLeaderboardData('easy', [['User7', 100], ['User8', 120], ['User9', 40]]);
+initialLeaderboardData('hard', [['User1', 10], ['User2', 80], ['User3', 20],['User4', 60], ['User5', 70], ['User6', 30],['User7', 50], ['User8', 10], ['User9', 40],['User10', 80], ['User12', 90], ['User13', 20],['User14', 110], ['User15', 30], ['User16', 30],['User17', 100], ['User18', 120], ['User19', 40],['User20', 120], ['User22', 140], ['User23', 20],['User24', 10], ['User25', 30], ['User26', 30],['User27', 10], ['User28', 20], ['User29', 40],['User31', 120], ['User32', 40], ['User33', 20],['User34', 20], ['User35', 30], ['User36', 10],['User37', 100], ['User38', 10], ['User39', 10]]);
+initialLeaderboardData('medium', [['User4', 110], ['User5', 130], ['User6', 30]]);
+initialLeaderboardData('easy', [['User7', 100], ['User8', 120], ['User9', 40]]);
 
 // 初始化显示
 updateLeaderboard();
+
